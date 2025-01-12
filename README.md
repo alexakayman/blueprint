@@ -1,14 +1,13 @@
 # OSINT Investigation Generator
 
-An AI-powered tool that transforms project ideas into detailed technical blueprints. Get structured development plans, architecture breakdowns, and implementation steps for your next project.
+An AI-powered tool that transforms investigation ideas into step-by-step plans from source collection to evidence compiling. Get structured investigations plans, architecture breakdowns, and free tools to guide your next investigation.
 
 ## Features
 
-- Instant technical breakdowns of project ideas
-- Component-level architecture planning
-- Prioritized development phases
-- Interactive project history
-- Responsive blueprint-themed UI
+- Instant detailed breakdowns of investigation ideas
+- Suggested open source tools for every step
+- Prioritized examination phases
+- Interactive investigation history
 
 ## Tech Stack
 

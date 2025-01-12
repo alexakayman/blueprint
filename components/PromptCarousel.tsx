@@ -58,12 +58,12 @@ const topRowPrompts: Prompt[] = [
   {
     id: "6",
     icon: <Camera className="w-4 h-4" />,
-    text: "Capitol Riot Participant Investigations",
+    text: "Capitol Riot Participants",
   },
   {
     id: "7",
     icon: <Utensils className="w-4 h-4" />,
-    text: "Navalny Poisoning Investigation",
+    text: "Navalny Poisoning Evidence",
   },
   {
     id: "8",
@@ -121,7 +121,7 @@ const bottomRowPrompts: Prompt[] = [
   {
     id: "18",
     icon: <Cpu className="w-4 h-4" />,
-    text: "Jeffrey Epstein Network Investigation",
+    text: "Jeffrey Epstein Network",
   },
 ];
 
