@@ -1,96 +1,191 @@
-'use client'
+"use client";
 
-import React, { useRef, useEffect, useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { BarChart3, Headphones, PiggyBank, Book, Plane, Camera, Utensils, Dumbbell, TreesIcon as Plant, Palette, Film, Zap, Briefcase, Gamepad2, ShoppingBag, Microscope, Globe, Cpu } from 'lucide-react'
+import React, { useRef, useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  BarChart3,
+  Headphones,
+  PiggyBank,
+  Book,
+  Plane,
+  Camera,
+  Utensils,
+  Dumbbell,
+  TreesIcon as Plant,
+  Palette,
+  Film,
+  Zap,
+  Briefcase,
+  Gamepad2,
+  ShoppingBag,
+  Microscope,
+  Globe,
+  Cpu,
+} from "lucide-react";
 
 interface Prompt {
-  id: string
-  icon: React.ReactNode
-  text: string
+  id: string;
+  icon: React.ReactNode;
+  text: string;
 }
 
 const topRowPrompts: Prompt[] = [
-  { id: '1', icon: <BarChart3 className="w-4 h-4" />, text: "Spotify listening analytics" },
-  { id: '2', icon: <PiggyBank className="w-4 h-4" />, text: "Personal finances tracker" },
-  { id: '3', icon: <Book className="w-4 h-4" />, text: "Digital scrapbooking app" },
-  { id: '4', icon: <Headphones className="w-4 h-4" />, text: "Music genre explorer" },
-  { id: '5', icon: <Plane className="w-4 h-4" />, text: "Travel itinerary planner" },
-  { id: '6', icon: <Camera className="w-4 h-4" />, text: "AI image enhancement tool" },
-  { id: '7', icon: <Utensils className="w-4 h-4" />, text: "Recipe sharing social network" },
-  { id: '8', icon: <Dumbbell className="w-4 h-4" />, text: "Personalized workout generator" },
-  { id: '9', icon: <Plant className="w-4 h-4" />, text: "Smart garden monitoring system" },
-]
+  {
+    id: "1",
+    icon: <BarChart3 className="w-4 h-4" />,
+    text: "Social media profile checker",
+  },
+  {
+    id: "2",
+    icon: <PiggyBank className="w-4 h-4" />,
+    text: "Email address verifier",
+  },
+  {
+    id: "3",
+    icon: <Book className="w-4 h-4" />,
+    text: "Public records search tool",
+  },
+  {
+    id: "4",
+    icon: <Headphones className="w-4 h-4" />,
+    text: "Username availability checker",
+  },
+  {
+    id: "5",
+    icon: <Plane className="w-4 h-4" />,
+    text: "Domain name investigation",
+  },
+  {
+    id: "6",
+    icon: <Camera className="w-4 h-4" />,
+    text: "Image metadata analyzer",
+  },
+  {
+    id: "7",
+    icon: <Utensils className="w-4 h-4" />,
+    text: "Website content scraper",
+  },
+  {
+    id: "8",
+    icon: <Dumbbell className="w-4 h-4" />,
+    text: "IP address geolocation tool",
+  },
+  { id: "9", icon: <Plant className="w-4 h-4" />, text: "Phone number lookup" },
+];
 
 const bottomRowPrompts: Prompt[] = [
-  { id: '10', icon: <Palette className="w-4 h-4" />, text: "Collaborative digital whiteboard" },
-  { id: '11', icon: <Film className="w-4 h-4" />, text: "Movie recommendation engine" },
-  { id: '12', icon: <Zap className="w-4 h-4" />, text: "Home energy consumption tracker" },
-  { id: '13', icon: <Briefcase className="w-4 h-4" />, text: "Freelance project management tool" },
-  { id: '14', icon: <Gamepad2 className="w-4 h-4" />, text: "Video game emulator" },
-  { id: '15', icon: <ShoppingBag className="w-4 h-4" />, text: "Sustainable fashion marketplace" },
-  { id: '16', icon: <Microscope className="w-4 h-4" />, text: "Citizen science data collection app" },
-  { id: '17', icon: <Globe className="w-4 h-4" />, text: "Language exchange platform" },
-  { id: '18', icon: <Cpu className="w-4 h-4" />, text: "IoT device management dashboard" },
-]
+  {
+    id: "10",
+    icon: <Palette className="w-4 h-4" />,
+    text: "Online alias tracker",
+  },
+  {
+    id: "11",
+    icon: <Film className="w-4 h-4" />,
+    text: "Video source verification",
+  },
+  {
+    id: "12",
+    icon: <Zap className="w-4 h-4" />,
+    text: "Network traffic monitor",
+  },
+  {
+    id: "13",
+    icon: <Briefcase className="w-4 h-4" />,
+    text: "Public Wi-Fi security scanner",
+  },
+  {
+    id: "14",
+    icon: <Gamepad2 className="w-4 h-4" />,
+    text: "Social network mapping tool",
+  },
+  {
+    id: "15",
+    icon: <ShoppingBag className="w-4 h-4" />,
+    text: "Online marketplace review analyzer",
+  },
+  {
+    id: "16",
+    icon: <Microscope className="w-4 h-4" />,
+    text: "Data breach checker",
+  },
+  {
+    id: "17",
+    icon: <Globe className="w-4 h-4" />,
+    text: "Global news aggregator",
+  },
+  {
+    id: "18",
+    icon: <Cpu className="w-4 h-4" />,
+    text: "Digital footprint analyzer",
+  },
+];
 
 interface PromptCarouselProps {
-  onPromptSelect: (prompt: string) => void
+  onPromptSelect: (prompt: string) => void;
 }
 
-export default function PromptCarousel({ onPromptSelect }: PromptCarouselProps) {
-  const [topRowOffset, setTopRowOffset] = useState(0)
-  const [bottomRowOffset, setBottomRowOffset] = useState(0)
-  const topRowRef = useRef<HTMLDivElement>(null)
-  const bottomRowRef = useRef<HTMLDivElement>(null)
-  const [isTopRowPaused, setIsTopRowPaused] = useState(false)
-  const [isBottomRowPaused, setIsBottomRowPaused] = useState(false)
+export default function PromptCarousel({
+  onPromptSelect,
+}: PromptCarouselProps) {
+  const [topRowOffset, setTopRowOffset] = useState(0);
+  const [bottomRowOffset, setBottomRowOffset] = useState(0);
+  const topRowRef = useRef<HTMLDivElement>(null);
+  const bottomRowRef = useRef<HTMLDivElement>(null);
+  const [isTopRowPaused, setIsTopRowPaused] = useState(false);
+  const [isBottomRowPaused, setIsBottomRowPaused] = useState(false);
 
   useEffect(() => {
-    let animationFrameId: number
-    let lastTimestamp = 0
+    let animationFrameId: number;
+    let lastTimestamp = 0;
 
     const animate = (timestamp: number) => {
       if (lastTimestamp === 0) {
-        lastTimestamp = timestamp
+        lastTimestamp = timestamp;
       }
 
-      const deltaTime = timestamp - lastTimestamp
-      lastTimestamp = timestamp
+      const deltaTime = timestamp - lastTimestamp;
+      lastTimestamp = timestamp;
 
       if (!isTopRowPaused && topRowRef.current) {
         setTopRowOffset((prevOffset) => {
-          const newOffset = (prevOffset + 0.02 * deltaTime) % (topRowRef.current!.scrollWidth / 2)
-          return newOffset
-        })
+          const newOffset =
+            (prevOffset + 0.02 * deltaTime) %
+            (topRowRef.current!.scrollWidth / 2);
+          return newOffset;
+        });
       }
       if (!isBottomRowPaused && bottomRowRef.current) {
         setBottomRowOffset((prevOffset) => {
-          const newOffset = (prevOffset - 0.02 * deltaTime + bottomRowRef.current!.scrollWidth / 2) % (bottomRowRef.current!.scrollWidth / 2)
-          return newOffset
-        })
+          const newOffset =
+            (prevOffset -
+              0.02 * deltaTime +
+              bottomRowRef.current!.scrollWidth / 2) %
+            (bottomRowRef.current!.scrollWidth / 2);
+          return newOffset;
+        });
       }
 
-      animationFrameId = requestAnimationFrame(animate)
-    }
+      animationFrameId = requestAnimationFrame(animate);
+    };
 
-    animationFrameId = requestAnimationFrame(animate)
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [isTopRowPaused, isBottomRowPaused])
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isTopRowPaused, isBottomRowPaused]);
 
   const handlePromptClick = (prompt: string) => {
-    onPromptSelect(prompt)
-  }
+    onPromptSelect(prompt);
+  };
 
   return (
     <div className="relative w-full overflow-hidden py-4 mb-6 rounded-md ">
       <div className="flex flex-col gap-4">
         <div className="relative overflow-hidden">
-          <div 
-            ref={topRowRef} 
+          <div
+            ref={topRowRef}
             className="flex gap-4 whitespace-nowrap"
             style={{ transform: `translateX(-${topRowOffset}px)` }}
             onMouseEnter={() => setIsTopRowPaused(true)}
@@ -109,9 +204,9 @@ export default function PromptCarousel({ onPromptSelect }: PromptCarouselProps) 
             ))}
           </div>
         </div>
-        
+
         <div className="relative overflow-hidden">
-          <div 
+          <div
             ref={bottomRowRef}
             className="flex gap-4 whitespace-nowrap"
             style={{ transform: `translateX(-${bottomRowOffset}px)` }}
@@ -132,10 +227,9 @@ export default function PromptCarousel({ onPromptSelect }: PromptCarouselProps) 
           </div>
         </div>
       </div>
-      
+
       <div className="absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-[#1e3a8a] to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-[#1e3a8a] to-transparent pointer-events-none" />
     </div>
-  )
+  );
 }
-

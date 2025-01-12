@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 interface QueryHistoryProps {
   history: Array<{ idea: string; focusArea: string | null }>;
@@ -6,10 +6,14 @@ interface QueryHistoryProps {
   onSelect: (index: number) => void;
 }
 
-export default function QueryHistory({ history, currentIndex, onSelect }: QueryHistoryProps) {
+export default function QueryHistory({
+  history,
+  currentIndex,
+  onSelect,
+}: QueryHistoryProps) {
   const truncateText = (text: string, maxLength: number = 24) => {
     if (text.length <= maxLength) return text;
-    return text.slice(0, maxLength - 3) + '...';
+    return text.slice(0, maxLength - 3) + "...";
   };
 
   return (
@@ -23,7 +27,7 @@ export default function QueryHistory({ history, currentIndex, onSelect }: QueryH
             size="sm"
             onClick={() => onSelect(index)}
             className={`max-w-[200px] truncate blueprint-button ${
-              index === currentIndex ? 'bg-blue-900/50 !border-blue-300/50' : ''
+              index === currentIndex ? "bg-blue-900/50 !border-blue-300/50" : ""
             }`}
             title={query.focusArea || query.idea}
           >
@@ -32,6 +36,5 @@ export default function QueryHistory({ history, currentIndex, onSelect }: QueryH
         ))}
       </div>
     </div>
-  )
+  );
 }
-

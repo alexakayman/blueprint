@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { Badge } from "./ui/badge"
-import { Button } from "./ui/button"
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 interface Component {
   name: string;
@@ -46,27 +46,28 @@ interface IdeaBreakdownProps {
   breakdown: Breakdown;
 }
 
-export default function IdeaBreakdown({
-  breakdown,
-}: IdeaBreakdownProps) {
-  const [expandedSections, setExpandedSections] = useState<string[]>(['overview', 'p0'])
-  const [expandedComponents, setExpandedComponents] = useState<string[]>([])
+export default function IdeaBreakdown({ breakdown }: IdeaBreakdownProps) {
+  const [expandedSections, setExpandedSections] = useState<string[]>([
+    "overview",
+    "p0",
+  ]);
+  const [expandedComponents, setExpandedComponents] = useState<string[]>([]);
 
   const toggleSection = (sectionName: string) => {
-    setExpandedSections(prev =>
+    setExpandedSections((prev) =>
       prev.includes(sectionName)
-        ? prev.filter(name => name !== sectionName)
+        ? prev.filter((name) => name !== sectionName)
         : [...prev, sectionName]
-    )
-  }
+    );
+  };
 
   const toggleComponentExpansion = (componentName: string) => {
-    setExpandedComponents(prev =>
+    setExpandedComponents((prev) =>
       prev.includes(componentName)
-        ? prev.filter(name => name !== componentName)
+        ? prev.filter((name) => name !== componentName)
         : [...prev, componentName]
-    )
-  }
+    );
+  };
 
   const renderComponent = (component: Component, index: number) => (
     <Card key={index} className="mt-4 blueprint-card">
@@ -101,9 +102,9 @@ export default function IdeaBreakdown({
         )}
       </CardContent>
     </Card>
-  )
+  );
 
-  const renderService = (service: Service, index: number ) => (
+  const renderService = (service: Service, index: number) => (
     <Card key={index} className="mt-4 blueprint-card">
       <CardHeader>
         <CardTitle className="flex items-center justify-between blueprint-text">
@@ -136,9 +137,9 @@ export default function IdeaBreakdown({
         )}
       </CardContent>
     </Card>
-  )
+  );
 
-  const renderPriorityLevel = (priority: 'p0' | 'p1' | 'p2') => (
+  const renderPriorityLevel = (priority: "p0" | "p1" | "p2") => (
     <Card key={priority} className="mt-6 blueprint-card">
       <CardHeader>
         <CardTitle className="flex items-center justify-between blueprint-text">
@@ -159,30 +160,44 @@ export default function IdeaBreakdown({
       </CardHeader>
       {expandedSections.includes(priority) && (
         <CardContent>
-          <h4 className="blueprint-subheading mt-6 mb-2">Frontend Components:</h4>
-          {breakdown.priorities[priority]?.frontend?.components?.map((component, index) =>
-            renderComponent(component, index)
-          ) || <p className="blueprint-text">No frontend components for this priority level.</p>}
-          <h4 className="blueprint-subheading mt-8">Backend Services:</h4>
-          {breakdown.priorities[priority]?.backend?.services?.map((service, index) =>
-            renderService(service, index)
-          ) || <p className="blueprint-text">No backend services for this priority level.</p>}
+          <h4 className="blueprint-subheading mt-6 mb-2">Source Collection:</h4>
+          {breakdown.priorities[priority]?.frontend?.components?.map(
+            (component, index) => renderComponent(component, index)
+          ) || (
+            <p className="blueprint-text">
+              No source collection for this priority level.
+            </p>
+          )}
+          <h4 className="blueprint-subheading mt-8">
+            Evidence and Investigative Procedures:
+          </h4>
+          {breakdown.priorities[priority]?.backend?.services?.map(
+            (service, index) => renderService(service, index)
+          ) || (
+            <p className="blueprint-text">
+              No backend services for this priority level.
+            </p>
+          )}
           <div className="mt-4">
             <h4 className="blueprint-subheading mb-2 mt-8">Data Model:</h4>
             {breakdown.priorities[priority]?.backend?.dataModel?.length > 0 ? (
               <ul className="list-disc pl-5 blueprint-text">
-                {breakdown.priorities[priority].backend.dataModel.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
+                {breakdown.priorities[priority].backend.dataModel.map(
+                  (item, index) => (
+                    <li key={index}>{item}</li>
+                  )
+                )}
               </ul>
             ) : (
-              <p className="blueprint-text">No data model defined for this priority level.</p>
+              <p className="blueprint-text">
+                No data model defined for this priority level.
+              </p>
             )}
           </div>
         </CardContent>
       )}
     </Card>
-  )
+  );
 
   return (
     <div className="space-y-6">
@@ -193,10 +208,10 @@ export default function IdeaBreakdown({
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => toggleSection('overview')}
+              onClick={() => toggleSection("overview")}
               className="blueprint-button"
             >
-              {expandedSections.includes('overview') ? (
+              {expandedSections.includes("overview") ? (
                 <ChevronDown className="h-4 w-4" />
               ) : (
                 <ChevronRight className="h-4 w-4" />
@@ -204,28 +219,28 @@ export default function IdeaBreakdown({
             </Button>
           </CardTitle>
         </CardHeader>
-        {expandedSections.includes('overview') && (
+        {expandedSections.includes("overview") && (
           <CardContent>
             <p className="blueprint-text pr-8">{breakdown.overview}</p>
           </CardContent>
         )}
       </Card>
 
-      {renderPriorityLevel('p0')}
-      {renderPriorityLevel('p1')}
-      {renderPriorityLevel('p2')}
+      {renderPriorityLevel("p0")}
+      {renderPriorityLevel("p1")}
+      {renderPriorityLevel("p2")}
 
       <Card className="blueprint-card">
         <CardHeader>
           <CardTitle className="flex items-center justify-between blueprint-text">
-            <span>Development Steps</span>
+            <span>Investigation Steps</span>
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => toggleSection('developmentSteps')}
+              onClick={() => toggleSection("developmentSteps")}
               className="blueprint-button"
             >
-              {expandedSections.includes('developmentSteps') ? (
+              {expandedSections.includes("developmentSteps") ? (
                 <ChevronDown className="h-4 w-4" />
               ) : (
                 <ChevronRight className="h-4 w-4" />
@@ -233,13 +248,15 @@ export default function IdeaBreakdown({
             </Button>
           </CardTitle>
         </CardHeader>
-        {expandedSections.includes('developmentSteps') && (
+        {expandedSections.includes("developmentSteps") && (
           <CardContent>
             {breakdown.developmentSteps.map((phase, index) => (
               <div key={index} className="mb-4 mt-6">
                 <div className="flex items-center gap-2 mb-2">
                   <h4 className="blueprint-subheading">{phase.phase}</h4>
-                  <Badge className="mx-1 blueprint-text bg-blue-200/10">{phase.priority}</Badge>
+                  <Badge className="mx-1 blueprint-text bg-blue-200/10">
+                    {phase.priority}
+                  </Badge>
                 </div>
                 <ul className="list-disc pl-5 blueprint-text">
                   {phase.tasks.map((task, taskIndex) => (
@@ -252,6 +269,5 @@ export default function IdeaBreakdown({
         )}
       </Card>
     </div>
-  )
+  );
 }
-
