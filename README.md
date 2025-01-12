@@ -1,6 +1,7 @@
 # OSINT Investigation Generator
 
 An AI-powered tool that transforms investigation ideas into step-by-step plans from source collection to evidence compiling. Get structured investigations plans, architecture breakdowns, and free tools to guide your next investigation.
+![app/opengraph-image.png]
 
 ## Features
 
