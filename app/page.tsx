@@ -186,7 +186,7 @@ export default function Home() {
                         idea: e.target.value,
                       }))
                     }
-                    placeholder="I want to build..."
+                    placeholder="I want to investigate..."
                     disabled={isLoading}
                     className="w-full blueprint-input border border-2"
                   />
@@ -196,7 +196,7 @@ export default function Home() {
                   disabled={isLoading || !currentQuery.idea.trim()}
                   className="blueprint-button-primary font-bold"
                 >
-                  Begin Investigation
+                  Examine
                 </Button>
               </form>
               {!currentQuery.breakdown && !isLoading && (

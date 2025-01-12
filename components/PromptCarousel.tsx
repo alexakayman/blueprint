@@ -33,61 +33,65 @@ const topRowPrompts: Prompt[] = [
   {
     id: "1",
     icon: <BarChart3 className="w-4 h-4" />,
-    text: "Social media profile checker",
+    text: "Malaysian Airlines Flight MH17",
   },
   {
     id: "2",
     icon: <PiggyBank className="w-4 h-4" />,
-    text: "Email address verifier",
+    text: "Long Island Serial Killer Case",
   },
   {
     id: "3",
     icon: <Book className="w-4 h-4" />,
-    text: "Public records search tool",
+    text: "Skripal Poisoning Case",
   },
   {
     id: "4",
     icon: <Headphones className="w-4 h-4" />,
-    text: "Username availability checker",
+    text: "	Charlottesville Unite the Right Rally",
   },
   {
     id: "5",
     icon: <Plane className="w-4 h-4" />,
-    text: "Domain name investigation",
+    text: "Syrian Chemical Weapons Attacks",
   },
   {
     id: "6",
     icon: <Camera className="w-4 h-4" />,
-    text: "Image metadata analyzer",
+    text: "Capitol Riot Participant Investigations",
   },
   {
     id: "7",
     icon: <Utensils className="w-4 h-4" />,
-    text: "Website content scraper",
+    text: "Navalny Poisoning Investigation",
   },
   {
     id: "8",
     icon: <Dumbbell className="w-4 h-4" />,
-    text: "IP address geolocation tool",
+    text: "Christchurch Mosque Shooting Documentation",
   },
-  { id: "9", icon: <Plant className="w-4 h-4" />, text: "Phone number lookup" },
+  {
+    id: "9",
+    icon: <Plant className="w-4 h-4" />,
+    text: "Yemen Conflict Civilian Casualties",
+  },
 ];
 
 const bottomRowPrompts: Prompt[] = [
   {
     id: "10",
     icon: <Palette className="w-4 h-4" />,
-    text: "Online alias tracker",
+    text: "Iran Protests Human Rights Violations",
   },
   {
     id: "11",
     icon: <Film className="w-4 h-4" />,
-    text: "Video source verification",
+    text: "Cambridge Analytica Facebook Data",
   },
   {
     id: "12",
     icon: <Zap className="w-4 h-4" />,
-    text: "Network traffic monitor",
+    text: "Eliot Higgins Bitcoin Ransom",
   },
   {
     id: "13",
@@ -97,27 +101,27 @@ const bottomRowPrompts: Prompt[] = [
   {
     id: "14",
     icon: <Gamepad2 className="w-4 h-4" />,
-    text: "Social network mapping tool",
+    text: "Russia-Ukraine War Troop Movements",
   },
   {
     id: "15",
     icon: <ShoppingBag className="w-4 h-4" />,
-    text: "Online marketplace review analyzer",
+    text: "Pegasus Spyware Global Investigation",
   },
   {
     id: "16",
     icon: <Microscope className="w-4 h-4" />,
-    text: "Data breach checker",
+    text: "Panama Papers Leak Analysis",
   },
   {
     id: "17",
     icon: <Globe className="w-4 h-4" />,
-    text: "Global news aggregator",
+    text: "Rohingya Genocide Documentation",
   },
   {
     id: "18",
     icon: <Cpu className="w-4 h-4" />,
-    text: "Digital footprint analyzer",
+    text: "Jeffrey Epstein Network Investigation",
   },
 ];
 
@@ -228,8 +232,8 @@ export default function PromptCarousel({
         </div>
       </div>
 
-      <div className="absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-[#1e3a8a] to-transparent pointer-events-none" />
-      <div className="absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-[#1e3a8a] to-transparent pointer-events-none" />
+      <div className="absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-[#050c21] to-transparent pointer-events-none" />
+      <div className="absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-[#050c21] to-transparent pointer-events-none" />
     </div>
   );
 }

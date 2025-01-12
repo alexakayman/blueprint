@@ -1,30 +1,30 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { Card, CardContent } from "@/components/ui/card"
-import { Loader2 } from 'lucide-react'
+import { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
 
 const loadingSteps = [
-  "Analyzing your project idea...",
-  "Identifying core components...",
-  "Writing project overview...",
+  "Analyzing your investigation...",
+  "Identifying core data sources...",
+  "Writing investigation overview...",
   "Determining P0 priorities...",
-  "Planning frontend components...",
-  "Designing backend architecture...",
-  "Organizing development phases...",
-  "Creating blueprint..."
-]
+  "Planning source collection components...",
+  "Designing eveidence collection architecture...",
+  "Organizing investigation phases...",
+  "Creating investigation plan...",
+];
 
 export default function LoadingScreen() {
-  const [currentStep, setCurrentStep] = useState(0)
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentStep((prev) => (prev + 1) % loadingSteps.length)
-    }, 2000)
+      setCurrentStep((prev) => (prev + 1) % loadingSteps.length);
+    }, 2000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Card className="w-full blueprint-card rounded-md mt-4">
@@ -37,16 +37,15 @@ export default function LoadingScreen() {
             {loadingSteps[currentStep]}
           </p>
           <div className="w-full max-w-xs bg-blue-900/30 h-2 rounded-full overflow-hidden">
-            <div 
+            <div
               className="h-full bg-blue-300/30 transition-all duration-500 ease-in-out"
-              style={{ 
-                width: `${((currentStep + 1) / loadingSteps.length) * 100}%`
+              style={{
+                width: `${((currentStep + 1) / loadingSteps.length) * 100}%`,
               }}
             />
           </div>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-
