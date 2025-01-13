@@ -246,7 +246,7 @@ export default function Home() {
 
       <footer className="w-full py-4 mt-auto">
         <p className="text-center text-xs blueprint-text opacity-50">
-          2025, Alexa Kayman forked from Floguo •{" "}
+          2025, Alexa Kayman •{" "}
           <a
             href="https://x.com/alexakayman"
             target="_blank"
