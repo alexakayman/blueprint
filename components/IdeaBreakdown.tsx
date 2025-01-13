@@ -92,7 +92,9 @@ export default function IdeaBreakdown({ breakdown }: IdeaBreakdownProps) {
         <p className="mb-2 blueprint-text">{component.description}</p>
         {expandedComponents.includes(component.name) && (
           <div>
-            <h5 className="blueprint-subheading mb-2 mt-6">Requirements:</h5>
+            <h5 className="blueprint-subheading mb-2 mt-6">
+              REQUIREMENTS & TOOLS:
+            </h5>
             <ul className="list-disc pl-5 blueprint-text">
               {component.requirements.map((req, idx) => (
                 <li key={idx}>{req}</li>

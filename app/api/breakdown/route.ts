@@ -26,7 +26,7 @@ export async function POST(req: Request) {
                 {
                   "name": "Component name",
                   "description": "Brief description without markdown or special characters",
-                  "requirements": ["List of key requirements"]
+                  "requirements": ["List of key tools to use, like LexusNexis for addresses, or OpenCorporates for corporations"]
                 }
               ]
             },
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
                 {
                   "name": "Service name",
                   "description": "Brief description without markdown or special characters",
-                  "requirements": ["List of key requirements"]
+                  "requirements": ["List of key tools to use, like LexusNexis for addresses, or OpenCorporates for corporations"]
                 }
               ],
               "dataModel": ["Key data entities and their relationships"]
