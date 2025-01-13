@@ -129,6 +129,12 @@ export default function Home() {
         body: JSON.stringify(newQuery),
       });
 
+      if (response.status === 504) {
+        throw new Error(
+          "Vercel timeout. API request took longer than 10 seconds. Please try cloning the repo!"
+        );
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
