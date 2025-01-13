@@ -52,7 +52,7 @@ export async function POST(req: Request) {
         },
         "systemArchitecture": {
           "components": ["List of popular tools to use"],
-          "connections": ["List of connections or data sources to keep an eye on"],
+          "connections": ["List of connections or data sources like OpenCorporates, GLEIF, and social media to keep an eye on"],
           "dataFlow": ["Description of data flow between component tools and data connections"]
         },
         "developmentSteps": [
@@ -69,12 +69,11 @@ export async function POST(req: Request) {
       3. P1 should include important steps for identifying actual suspects.
       4. P2 should include nice-to-have features or future enhancements to monitoring or specific steps for finding evidence or tracking suspects.
       5. For each priority level, provide 2-4 frontend steps (source collection and surface level investigations steps) and 1-3 backend (deep, investigative steps) services.
-      6. The systemArchitecture should provide a clear overview of how components interact.
+      6. The systemArchitecture should list relevant open source tools to use for each step, like LexusNexus, Sherlock, and more.
       7. Outline 3-4 investigation phases with specific tasks and priority levels.
       8. Adjust the detail level based on the depth parameter.
-      9. If a focus area is provided, provide more details for that specific area.
-      10. Do not use markdown formatting or special characters in any text fields.
-      11. Response must be ONLY the JSON object, no other text.
+      9. Do not use markdown formatting or special characters in any text fields.
+      10. Response must be ONLY the JSON object, no other text.
     `;
     const result = await model.generateContent(prompt);
     const response = await result.response;
@@ -117,7 +116,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("API Error:", error);
     return Response.json(
-      { error: "Failed to process the idea. Please try again." },
+      { error: "Failed to process the investigation. Please try again." },
       { status: 500 }
     );
   }
